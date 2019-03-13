@@ -14,8 +14,8 @@ int main () {
    int suma1 = 0;
    int suma2 = 0;
 
-#pragma omp parallel num_threads(40) default(none) 
-#pragma omp  for 
+#pragma omp parallel num_threads(40) default(shared) 
+#pragma omp  for shared (i, suma1, suma2)
    for ( i=0; i<NSIZE; ++i ) {
       suma1 = suma1 + 1;
       suma2 = suma2 + 1;

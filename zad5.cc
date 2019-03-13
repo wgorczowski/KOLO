@@ -12,16 +12,19 @@ int main () {
 
     // Dopisz ponizej linie mierzace czas wykonania petli
     // i wypisz wynik na koncu
-
     omp_set_num_threads(8);
 
     // tu poczatek pomiaru
 
-    #pragma omp for 
+    #pragma omp for schedule(dynamic, 1) nowait
+	{
       for (int i=0; i<20; ++i) fun(i);
-
+	}
+	
     // tu koniec pomiaru
+	czas = omp_get_wtime() - wtime;
     // wypisz czas trwania cout << 
+	cout << wtime;
 
 }
 

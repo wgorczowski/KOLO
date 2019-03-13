@@ -11,7 +11,7 @@ int main () {
 
   int i = 5, j;
 
-  #pragma omp parallel for num_threads(8) firstprivate(i)
+  #pragma omp parallel for num_threads(8) shared(i)
      for ( j=0; j<5; ++j ) {
          this_thread::sleep_for(100ms);
          i = i + 1;

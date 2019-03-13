@@ -6,7 +6,8 @@ using namespace std;
 // i tak zabezpiecz, zeby liczylo sie poprawnie (tzn. koncowy
 // wynik byl 30)
 
-int fun( int c ) { 
+int fun( int c ) 
+{ 
    return c+10;
 }
 
@@ -16,9 +17,21 @@ int main () {
 
 #pragma omp parallel num_threads(4)
 {
-   a = fun( a );
-   a = fun( a );
-   a = fun( a );
+#pragma omg simple 
+{
+	#pragma omp task 
+	{
+   		a = fun( a );
+	}
+	#pragma omp task
+	{
+   		a = fun( a );
+	}
+	#pragma omp task
+	{
+   		a = fun( a );
+	}
+}
 }
    cout << "a = " << a << endl;
 

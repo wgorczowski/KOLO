@@ -20,8 +20,14 @@ int main () {
 
 #pragma omp parallel num_threads(8)
 {
+#pragma omp master 
    a = fun(10); // to ma byc wykonane przez watek glowny
+#pragma omp barrier
+
+#pragma omg section
+{ 
    a = fun(a); // to ma byc wykonane przez jeden (dowolny) watek
+}
 
 }
 
