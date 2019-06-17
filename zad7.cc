@@ -13,19 +13,23 @@ char c = 'a';
 // operacje w sekcjach, na koniec 
 // zwolnij zasoby obiektu omp_lock_t
 
+#pragma omp init_lock(omp_lock_t *lock)    
 #pragma omp parallel num_threads(2)
 {
     #pragma omp sections nowait
-    {
+    { 
        #pragma omp section
+       #pragma omp set_lock(omp_lock_t *lock)
        {
           buf += c++;
        }
-
+       #pragma omp unset_lock(omp_lock_t *lock) 
        #pragma omp section
+       #pragma omp set_lock(omp_lock_t *lock)
        {
           buf += c++;
        }
+       #pragma omp unset_lock(omp_lock_t *lock)
     }  
 }  
 
