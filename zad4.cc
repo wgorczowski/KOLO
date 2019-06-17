@@ -15,7 +15,7 @@ int fun(int c) {
 int main () {
 
    int a = 0;
-#pragma omp parallel num_threads(8)
+#pragma omp parallel for schedule(static, 1) num_threads(8)
 {
    #pragma omp sections 
    {
